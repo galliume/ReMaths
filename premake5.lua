@@ -9,8 +9,24 @@ workspace "ReMaths"
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
 IncludeDir = {}
-IncludeDir["googletest"] = "vendor/googletest/googletest/include"
-IncludeDir["googlemock"] = "vendor/googletest/googlemock/include"
+IncludeDir["googletest"] = "vendor/googletest/googletest"
+IncludeDir["googlemock"] = "vendor/googletest/googlemock"
+
+project "GoogleTest"
+    kind "StaticLib"
+    files 
+    {
+        "%{IncludeDir.googletest}/src/gtest-all.cc",
+        "%{IncludeDir.googlemock}/src/gmock-all.cc" 
+    }
+
+    includedirs 
+    { 
+        "%{IncludeDir.googletest}/include", 
+        "%{IncludeDir.googletest}",
+        "%{IncludeDir.googlemock}/include", 
+        "%{IncludeDir.googlemock}"
+    }
 
 project "ReMaths"
     location ""
@@ -26,20 +42,18 @@ project "ReMaths"
 	{
         "include/*.h",
         "src/*.cpp",
+        "tests/*.cpp"
     }
-    
+
     includedirs
     {
-        "include",
-        "vendor/googletest/googletest",
-        "vendor/googletest/googletest/googletest",
-        "%{IncludeDir.googletest}",
-        "%{IncludeDir.googlemock}",
+        "%{IncludeDir.googletest}/include",
+        "%{IncludeDir.googlemock}/include"
     }
 
     links
     {
-        "GoogleTest", "GoogleMock"
+        "GoogleTest"
     }
 
 	filter { "system:windows", "configurations:Debug"}
