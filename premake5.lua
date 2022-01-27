@@ -40,13 +40,14 @@ project "ReMaths"
 
 	files
 	{
-        "include/*.h",
-        "src/*.cpp",
-        "tests/*.cpp"
+        "include/**.h",
+        "src/**.cpp",
+        "tests/**.cpp"
     }
 
     includedirs
     {
+        "include",
         "%{IncludeDir.googletest}/include",
         "%{IncludeDir.googlemock}/include"
     }
