@@ -42,3 +42,4 @@ Makefile
 *.sln
 *.vcxproj
 *.vcxproj.*
+.vscode
