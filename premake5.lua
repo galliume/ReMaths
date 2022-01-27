@@ -10,23 +10,25 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
 IncludeDir = {}
 IncludeDir["googletest"] = "vendor/googletest/googletest"
-IncludeDir["googlemock"] = "vendor/googletest/googlemock"
 
 project "GoogleTest"
     kind "StaticLib"
     files 
     {
         "%{IncludeDir.googletest}/src/gtest-all.cc",
-        "%{IncludeDir.googlemock}/src/gmock-all.cc" 
     }
 
     includedirs 
     { 
         "%{IncludeDir.googletest}/include", 
-        "%{IncludeDir.googletest}",
-        "%{IncludeDir.googlemock}/include", 
-        "%{IncludeDir.googlemock}"
+        "%{IncludeDir.googletest}"        
     }
+
+    filter { "system:windows", "configurations:Debug"}
+        systemversion "latest"
+        runtime "Debug"
+        symbols "on"
+        buildoptions { "/MTd" }
 
 project "ReMaths"
     location ""
@@ -49,7 +51,6 @@ project "ReMaths"
     {
         "include",
         "%{IncludeDir.googletest}/include",
-        "%{IncludeDir.googlemock}/include"
     }
 
     links
