@@ -100,3 +100,21 @@ TEST(Vector3D, Normalize) {
     EXPECT_FLOAT_EQ(vec3DNormalized[1], 0.53452247);
     EXPECT_FLOAT_EQ(vec3DNormalized[2], 0.80178368);
 }
+
+TEST(Vector3D, Dot) {
+    ReM::Vector3D vec3D = ReM::Vector3D(1, 2, 3);
+    ReM::Vector3D vec3D2 = ReM::Vector3D(4, 5, 6);
+
+    EXPECT_FLOAT_EQ(sqrt(ReM::Dot(vec3D, vec3D)), ReM::Magnitude(vec3D));
+    EXPECT_FLOAT_EQ(ReM::Dot(vec3D, vec3D2), 32);
+}
+
+TEST(Vector3D, Cross) {
+    ReM::Vector3D vec3D = ReM::Vector3D(1, 2, 3);
+    ReM::Vector3D vec3D2 = ReM::Vector3D(4, 5, 6);
+    ReM::Vector3D vec3D3 = ReM::Cross(vec3D, vec3D2);
+
+    EXPECT_FLOAT_EQ(vec3D3[0], -3);
+    EXPECT_FLOAT_EQ(vec3D3[1], 6);
+    EXPECT_FLOAT_EQ(vec3D3[2], -3);
+}
