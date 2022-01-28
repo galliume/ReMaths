@@ -2,7 +2,6 @@
 #include "Vector3D.h"
 
 TEST(Vector3D, Init) {
-
     ReM::Vector3D vec3D = ReM::Vector3D(1, 2, 3);
 
     EXPECT_EQ(vec3D[0], 1);
@@ -11,7 +10,6 @@ TEST(Vector3D, Init) {
 }
 
 TEST(Vector3D, Multiply) {
-
     ReM::Vector3D vec3D = ReM::Vector3D(1, 2, 3);
     vec3D *= 2;
 
@@ -27,7 +25,6 @@ TEST(Vector3D, Multiply) {
 }
 
 TEST(Vector3D, Divide) {
-
     ReM::Vector3D vec3D = ReM::Vector3D(1, 2, 3);
     vec3D /= 2;
 
@@ -79,7 +76,6 @@ TEST(Vector3D, Add) {
     EXPECT_EQ(vec3D2[1], 6);
     EXPECT_EQ(vec3D2[2], 8);
 
-
     ReM::Vector3D vec3D4 = vec3D + vec3D2;
 
     EXPECT_EQ(vec3D4[0], 5);
@@ -117,4 +113,24 @@ TEST(Vector3D, Cross) {
     EXPECT_FLOAT_EQ(vec3D3[0], -3);
     EXPECT_FLOAT_EQ(vec3D3[1], 6);
     EXPECT_FLOAT_EQ(vec3D3[2], -3);
+}
+
+TEST(Vector3D, Project) {
+    ReM::Vector3D vec3D = ReM::Vector3D(1, 2, 3);
+    ReM::Vector3D vec3D2 = ReM::Vector3D(4, 5, 6);
+    ReM::Vector3D vec3D3 = ReM::Project(vec3D, vec3D2);
+
+    EXPECT_FLOAT_EQ(vec3D3[0], 1.6623377);
+    EXPECT_FLOAT_EQ(vec3D3[1], 2.0779221);
+    EXPECT_FLOAT_EQ(vec3D3[2], 2.4935064);
+}
+
+TEST(Vector3D, Reject) {
+    ReM::Vector3D vec3D = ReM::Vector3D(1, 2, 3);
+    ReM::Vector3D vec3D2 = ReM::Vector3D(4, 5, 6);
+    ReM::Vector3D vec3D3 = ReM::Reject(vec3D, vec3D2);
+
+    EXPECT_FLOAT_EQ(vec3D3[0], -0.66233766);
+    EXPECT_FLOAT_EQ(vec3D3[1], -0.077922106);
+    EXPECT_FLOAT_EQ(vec3D3[2], 0.50649357);
 }
