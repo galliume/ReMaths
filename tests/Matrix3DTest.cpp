@@ -40,3 +40,12 @@ TEST(Matrix3D, Init) {
     EXPECT_FLOAT_EQ(vec3D3[2], 42);
 }
 
+TEST(Matrix3D, Determinant) {
+    ReM::Matrix3D matrix3D = ReM::Matrix3D(
+        1.0, 2.0, 3.0, 
+        4.0, 5.0, 6.0, 
+        7.0, 8.0, 9.0
+    );
+
+    EXPECT_FLOAT_EQ(ReM::Determinant(matrix3D), 0.0);
+}
