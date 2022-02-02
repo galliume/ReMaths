@@ -82,4 +82,23 @@ namespace ReM
             + m(0, 1) * (m(1, 2) * m(2, 0) - m(1, 0) * m(2, 2))
             + m(0, 2) * (m(1, 0) * m(2, 1) - m(1, 1) * m(2, 0));
     }
+
+    Matrix3D Inverse(const Matrix3D& m)
+    {
+        const Vector3D& a = m[0];
+        const Vector3D& b = m[1];
+        const Vector3D& c = m[2];
+
+        Vector3D r0 = Cross(b, c);
+        Vector3D r1 = Cross(c, a);
+        Vector3D r2 = Cross(a, b);
+
+        float invDet = 1.0F / Dot(r2, c);
+
+        return Matrix3D(
+            r0.x * invDet, r0.y* invDet, r0.z * invDet,
+            r1.x * invDet, r1.y* invDet, r1.z * invDet,
+            r2.x * invDet, r2.y* invDet, r2.z * invDet
+        );
+    }
 }

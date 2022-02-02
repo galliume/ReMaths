@@ -49,3 +49,17 @@ TEST(Matrix3D, Determinant) {
 
     EXPECT_FLOAT_EQ(ReM::Determinant(matrix3D), 0.0);
 }
+
+TEST(Matrix3D, Inverse) {
+    ReM::Matrix3D matrix3D = ReM::Matrix3D(
+        1.0, 2.0, 1.0, 
+        3.0, 5.0, 0.0, 
+        4.0, 2.0, 6.0
+    );
+
+    ReM::Matrix3D matrix3D2 = ReM::Inverse(matrix3D);
+
+    EXPECT_FLOAT_EQ(matrix3D2(1, 2), -0.15);
+    EXPECT_FLOAT_EQ(matrix3D2(2, 1), -0.30);
+    EXPECT_FLOAT_EQ(matrix3D2(1, 0), 0.90);
+}
