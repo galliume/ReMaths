@@ -101,4 +101,40 @@ namespace ReM
             r2.x * invDet, r2.y* invDet, r2.z * invDet
         );
     }
+    
+    Matrix3D MakeRotationX(float t) 
+    {
+        float c = cos(t);
+        float s = sin(t);
+
+        return Matrix3D(
+            1.0f, 0.0f, 0.0f, 
+            0.0f, c, -s,
+            0.0f, s, c
+        );
+    }
+
+    Matrix3D MakeRotationY(float t) 
+    {
+        float c = cos(t);
+        float s = sin(t);
+
+        return Matrix3D(
+            c, 0.0f, s, 
+            0.0f, 1.0f, 0.0f,
+            -s, 0.0f, c
+        );
+    }
+
+    Matrix3D MakeRotationZ(float t) 
+    {
+        float c = cos(t);
+        float s = sin(t);
+
+        return Matrix3D(
+            c, -s, 0.0f,
+            s, c, 0.0f,
+            0.0f, 0.0f, 1.0f
+        );
+    }
 }
